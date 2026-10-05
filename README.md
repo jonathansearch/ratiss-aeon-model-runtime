@@ -6,43 +6,43 @@
 
 # RATISS Aeon Model Runtime
 
-Ce dépôt privé centralise les **manifestes, empreintes et instructions de démarrage** des modèles locaux utilisés par RATISS Aeon Prime. Les poids binaires publiés avec une release sont des copies de distribution ; la référence de licence et de provenance demeure la carte officielle de l’éditeur.
+This private repository centralizes the **manifests, fingerprints and startup instructions** of the local models used by RATISS Aeon Prime. Binary weights published with a release are distribution copies; the licensing and provenance reference remains the official card of the vendor.
 
-## Modèles disponibles
+## Available models
 
-| Modèle | Format | Empreinte de taille | Usage cible |
+| Model | Format | Size fingerprint | Target usage |
 | --- | --- | --- | --- |
-| Qwen2.5 0.5B Instruct Q4_K_M | GGUF | environ 469 Mo sur disque | inférence locale légère, routage, extraction et génération structurée |
-| Qwen2.5 1.5B Instruct Q4_K_M | GGUF | environ 1,1 Go sur disque | raisonnement local plus riche, sorties structurées et tâches multilingues |
+| Qwen2.5 0.5B Instruct Q4_K_M | GGUF | about 469 MB on disk | light local inference, routing, extraction and structured generation |
+| Qwen2.5 1.5B Instruct Q4_K_M | GGUF | about 1.1 GB on disk | richer local reasoning, structured outputs and multilingual tasks |
 
-## Récupération et intégrité
+## Retrieval and integrity
 
-Téléchargez le fichier `.gguf` depuis la release correspondant au modèle choisi, puis contrôlez-le avec le fichier SHA-256 publié dans les mêmes assets.
+Download the `.gguf` file from the release matching the chosen model, then check it with the SHA-256 file published in the same assets.
 
 ```bash
 sha256sum -c SHA256SUMS
 ```
 
-## Utilisation locale
+## Local usage
 
-La voie la plus simple consiste à utiliser Ollama, qui récupère automatiquement la version Q4_K_M :
+The simplest way is to use Ollama, which automatically fetches the Q4_K_M version:
 
 ```bash
 ollama run hf.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF:Q4_K_M
 ```
 
-Pour exposer le fichier GGUF par une API compatible OpenAI locale, installez `llama.cpp`, puis exécutez :
+To expose the GGUF file through a local OpenAI-compatible API, install `llama.cpp`, then run:
 
 ```bash
 bash scripts/run-qwen-local.sh ./qwen2.5-1.5b-instruct-q4_k_m.gguf
 ```
 
-L’API locale sera disponible sur `http://127.0.0.1:8080/v1`.
+The local API will be available on `http://127.0.0.1:8080/v1`.
 
-## Pourquoi ne pas versionner le binaire dans Git ?
+## Why not version the binary in Git?
 
-Les poids de plusieurs centaines de Mo ne sont pas adaptés aux commits Git ordinaires. La release fournit un téléchargement versionné et reproductible, tandis que le dépôt conserve la documentation, le manifeste, l’empreinte et les scripts nécessaires à l’exploitation.
+Weights of several hundred MB are not suited to ordinary Git commits. The release provides a versioned and reproducible download, while the repository keeps the documentation, the manifest, the fingerprint and the scripts needed for operation.
 
-## Provenance et licence
+## Provenance and license
 
-Les modèles proviennent des dépôts officiels [Qwen2.5-0.5B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF) et [Qwen2.5-1.5B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF). Qwen indique une licence **Apache-2.0** pour ces variantes. Avant toute redistribution commerciale, vérifiez les termes en vigueur de l’éditeur.
+The models come from the official repositories [Qwen2.5-0.5B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF) and [Qwen2.5-1.5B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF). Qwen states an **Apache-2.0** license for these variants. Before any commercial redistribution, check the vendor's current terms.
